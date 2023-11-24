@@ -5,11 +5,17 @@ const mongoose = require("mongoose");
 //Import and configuration of "dotenv".
 require("dotenv").config();
 
+//Importing the routes
+const user = require("./routes/user")
+
 const app = express();
 
 //Using the middlewares
 app.use(bodyparser.json());
 app.use(helmet());
+
+//Using the routes
+app.use("/user", user)
 
 //Establish a connection with database
 const ConnectToDatabase = async () => {

@@ -1,8 +1,11 @@
 const express = require("express");
 const { UserModel } = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const user = express.Router();
+
+const Key = "lkasjclcnasdjllc";
 
 //Signup
 user.post("/Signup", async (req, res) => {
@@ -25,6 +28,30 @@ user.post("/Signup", async (req, res) => {
       });
     }
     res.status(201).send("User signed up successfully");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+//Login
+user.post("/login", async (req, res) => {
+  try {
+    const FindUser = await UserModel.findOne({
+      email: req.body.email,
+    });
+    if (FindUser) {
+      const IsPasswordIdentical = await bcrypt.compare(
+        FindUser.password,
+        req.body.password
+      );
+
+      if (IsPasswordIdentical) {
+        const Token = jwt.sign({ id: FindUser._id }, Key);
+        res.status(201).send(Token);
+      } else {
+        res.status(401).send("Password is wrong");
+      }
+    }
   } catch (error) {
     console.log(error.message);
   }

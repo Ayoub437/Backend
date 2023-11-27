@@ -40,7 +40,7 @@ user.post("/login", async (req, res) => {
       email: req.body.email,
     });
     if (FindUser) {
-      const IsPasswordIdentical = await bcrypt.compare(
+      const IsPasswordIdentical = bcrypt.compare(
         FindUser.password,
         req.body.password
       );
@@ -51,6 +51,8 @@ user.post("/login", async (req, res) => {
       } else {
         res.status(401).send("Password is wrong");
       }
+    } else {
+      res.status(401).send("User doesn't exist")
     }
   } catch (error) {
     console.log(error.message);

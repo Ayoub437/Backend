@@ -13,6 +13,11 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+
+  isActive: {
+    type: String,
+    required: false
+  }
 });
 
 //Creating a model

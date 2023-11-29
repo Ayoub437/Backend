@@ -32,3 +32,7 @@ app.listen(3000, () => {
   ConnectToDatabase();
   console.log("Server is running");
 });
+
+
+
+//Next step: I have to create an endpoint

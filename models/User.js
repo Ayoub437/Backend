@@ -15,9 +15,9 @@ const UserSchema = mongoose.Schema({
   },
 
   isActive: {
-    type: String,
-    required: false
-  }
+    type: Boolean,
+    default: false,
+  },
 });
 
 //Creating a model

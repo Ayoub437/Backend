@@ -20,6 +20,7 @@ app.use("/user", user)
 //Establish a connection with database
 const ConnectToDatabase = async () => {
   try {
+    //I put the URL, password and username of the database in the environment-file, because they are vulnerable for hacks.
     await mongoose.connect(process.env.MONGOOSE_URI);
     console.log("Database is connected");
   } catch (error) {

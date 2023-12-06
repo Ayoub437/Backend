@@ -13,6 +13,7 @@ async function sendEmailToUser(subject, html, to) {
       //Here i authorize myself with the mail server that i am using.
       auth: {
         user: "ouatalebayoub@gmail.com",
+              //I put the password of my gmail-account in the environment-file, because it is vulnerable for hacks.
         pass: proccess.env.NODEMAILER_PASS //That password is just for apps. I can get it in my gmail.
       },
     });
@@ -35,4 +36,4 @@ async function sendEmailToUser(subject, html, to) {
 module.exports = {sendEmailToUser}
 
 
-//Im this file i send an email to the user's email.
+//In this file i send an email to the user's email.
